@@ -1,0 +1,62 @@
+openapi: 3.0.0
+info:
+  title: AWS Test API
+  description: API for the test-store
+  version: 0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1
+servers:
+  - url: https://7q7u27f90l.execute-api.eu-west-1.amazonaws.com/dev
+    description: AWS
+  - url: http://localhost:3031
+    description: Local server
+paths:
+  /products:
+    get:
+      summary: Products List
+      description: Returns a list of products
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+        500:
+          description: Internal Server Error
+  /products/{id}:
+    get:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the product to get
+      summary: Product Item
+      description: Returns a specified product
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        404:
+          description: Product Not Found
+        500:
+          description: Internal Server Error
+
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        price:
+          type: number

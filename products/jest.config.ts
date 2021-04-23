@@ -86,6 +86,7 @@ export default {
     "@functions/(.*)": "<rootDir>/src/functions/$1",
     "@libs/(.*)": "<rootDir>/src/libs/$1",
     "@repositories/(.*)": "<rootDir>/src/repositories/$1",
+    "@services/(.*)": "<rootDir>/src/services/$1",
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader

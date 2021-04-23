@@ -2,3 +2,4 @@
 *.iml
 **/.serverless/
 .DS_Store
+.env

@@ -1,9 +1,9 @@
 import type {AWS} from '@serverless/typescript';
 
-import getProductList from '@functions/getProductList';
-import getProductById from '@functions/getProductById';
+import {getProductList, getProductById, addProduct} from '@functions/index';
 
 const serverlessConfiguration: AWS = {
+  useDotenv: true,
   service: 'products',
   frameworkVersion: '2',
   custom: {
@@ -12,7 +12,7 @@ const serverlessConfiguration: AWS = {
       includeModules: true,
     },
   },
-  plugins: ['serverless-webpack', 'serverless-offline'],
+  plugins: ['serverless-webpack', 'serverless-offline', 'serverless-dotenv-plugin'],
   provider: {
     name: 'aws',
     runtime: 'nodejs14.x',
@@ -23,11 +23,16 @@ const serverlessConfiguration: AWS = {
     },
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
+      DB_HOST: "${env:DB_HOST}",
+      DB_PORT: "5432",
+      DB_DATABASE: "${env:DB_DATABASE}",
+      DB_USERNAME: "${env:DB_USER}",
+      DB_PASSWORD: "${env:DB_PASSWORD}",
     },
     lambdaHashingVersion: '20201221',
   },
   // import the function via paths
-  functions: {getProductList, getProductById},
+  functions: {getProductList, getProductById, addProduct},
 };
 
 module.exports = serverlessConfiguration;

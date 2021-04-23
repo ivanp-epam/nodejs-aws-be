@@ -1,0 +1,11 @@
+{
+  "headers": {
+  },
+  "body": {
+    "title": "qwe",
+    "description": "asd",
+    "price": 123,
+    "count": 321
+  }
+}
+

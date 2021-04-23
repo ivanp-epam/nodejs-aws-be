@@ -13,7 +13,11 @@
   "dependencies": {
     "@middy/core": "^1.5.2",
     "@middy/http-json-body-parser": "^1.5.2",
-    "source-map-support": "^0.5.19"
+    "@types/pg": "^7.14.11",
+    "joi": "^17.4.0",
+    "pg": "^8.6.0",
+    "source-map-support": "^0.5.19",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@serverless/typescript": "^2.23.0",

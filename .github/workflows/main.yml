@@ -33,13 +33,15 @@ jobs:
         uses: actions/setup-node@v2.1.5
         with:
           # Version Spec of the version to use.  Examples: 12.x, 10.15.1, >=10.15.0
-          node-version: "15.6.0"
+          node-version: ">=14.0.0 <16"
           architecture: x64
           # Set this option if you want the action to check for the latest available version that satisfies the version spec
-          check-latest: true
+          # check-latest: true
 
-      - name: test products
-        run: |
-          cd products
-          npm ci
-          npm run test
+      - name: Install Packages
+        working-directory: ./products
+        run: npm ci
+
+      - name: Run tests
+        working-directory: ./products
+        run: npm run test

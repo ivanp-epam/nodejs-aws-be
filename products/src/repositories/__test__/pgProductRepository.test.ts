@@ -1,6 +1,6 @@
 import {ProductType} from "../../types/productType";
 import {Connection} from "../../db/connection";
-import {PgProductRepository} from "../PgProductRepository";
+import {PgProductRepository} from "../pgProductRepository";
 
 const connectMock = jest.fn();
 const queryMock = jest.fn();

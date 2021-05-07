@@ -1,5 +1,7 @@
-import * as productRepository from "../productRepository";
+import {InMemoryProductRepository} from "../inMemoryProductRepository";
 import {ProductType} from "../../types/productType";
+
+const productRepository = new InMemoryProductRepository();
 
 describe('Product repository', () => {
 

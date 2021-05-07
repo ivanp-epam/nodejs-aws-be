@@ -1,20 +1,9 @@
-import products from "./products.json"
 import {ProductType} from "../types/productType";
 
-const productsTypes: ProductType[] = products;
+export interface ProductRepository {
+  find(): Promise<ProductType[]>;
 
-export const find = async (): Promise<ProductType[]> => Promise.resolve(productsTypes);
+  getById(id: string): Promise<ProductType>;
 
-/**
- * Find product by its ID
- * @param id
- * @throws Error
- */
-export const getById = async (id: string): Promise<ProductType> => {
-  const resultProduct = productsTypes.find((el) => el.id === id);
-  if (!resultProduct) {
-    throw new Error(`Product ${id} not found`);
-  }
-
-  return Promise.resolve(resultProduct);
+  add(product: ProductType): Promise<ProductType>;
 }

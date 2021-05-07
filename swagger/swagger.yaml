@@ -24,6 +24,26 @@ paths:
                   $ref: "#/components/schemas/Product"
         500:
           description: Internal Server Error
+    post:
+      summary: Products Add
+      description: Adds a product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+        500:
+          description: Internal Server Error
   /products/{id}:
     get:
       parameters:
@@ -59,4 +79,6 @@ components:
         description:
           type: string
         price:
+          type: number
+        count:
           type: number

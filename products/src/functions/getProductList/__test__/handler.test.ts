@@ -1,5 +1,12 @@
-import {main as handler} from "../handler";
 import * as correctData from "./mock.correct.json"
+import {InMemoryProductRepository} from "@repositories/inMemoryProductRepository";
+
+jest.mock('@services/repository', () => ({
+    getProductRepository: () => new InMemoryProductRepository()
+  })
+);
+
+import {main as handler} from "../handler";
 
 describe('GetProductList lambda', () => {
   describe('Check handler', () => {

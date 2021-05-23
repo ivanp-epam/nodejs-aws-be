@@ -38,10 +38,18 @@ jobs:
           # Set this option if you want the action to check for the latest available version that satisfies the version spec
           # check-latest: true
 
-      - name: Install Packages
+      - name: "[Products] Install Packages"
         working-directory: ./products
         run: npm ci
 
-      - name: Run tests
+      - name: "[Products] Run tests"
         working-directory: ./products
+        run: npm run test
+
+      - name: "[Import-Service] Install Packages"
+        working-directory: ./import-service
+        run: npm ci
+
+      - name: "[Import-Service] Run tests"
+        working-directory: ./import-service
         run: npm run test

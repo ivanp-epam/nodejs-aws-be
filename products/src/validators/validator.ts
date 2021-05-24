@@ -1,5 +1,5 @@
 import * as Joi from 'joi';
-import {ValidationError} from "../../errors/validationError";
+import {ValidationError} from "../errors/validationError";
 
 const rules = Joi.object({
   title: Joi.string().required(),

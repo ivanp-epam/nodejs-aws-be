@@ -3,7 +3,7 @@ import 'source-map-support/register';
 import {formatJSONResponse} from '@libs/apiGateway';
 import {middyfy} from '@libs/lambda';
 import {getProductRepository} from '@services/repository'
-import {validate} from './validator'
+import {validate} from '../../validators/validator'
 import {ValidationError} from "../../errors/validationError";
 
 

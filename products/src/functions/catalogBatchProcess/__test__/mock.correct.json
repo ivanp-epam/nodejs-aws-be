@@ -1,0 +1,11 @@
+{
+  "Records": [
+    {
+      "body" : "{\"title\":\"title1\",\"description\":\"description1\",\"price\":123,\"count\":1}"
+    },
+    {
+      "body" : "{\"title\":\"title2\",\"description\":\"description2\",\"price\":321,\"count\":2}"
+    }
+  ]
+}
+

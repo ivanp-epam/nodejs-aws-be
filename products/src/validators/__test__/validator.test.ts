@@ -1,5 +1,5 @@
 import {validate} from "../validator";
-import {ValidationError} from "../../../errors/validationError";
+import {ValidationError} from "../../errors/validationError";
 
 describe('AddProduct lambda', () => {
   describe('Check validator', () => {

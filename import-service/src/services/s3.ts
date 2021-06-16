@@ -1,6 +1,7 @@
 import * as aws from "aws-sdk";
 import {CopyObjectRequest, DeleteObjectRequest} from "aws-sdk/clients/s3";
 import csvParser from "csv-parser";
+import {sendProductToQueue} from "@services/sqs";
 
 const BUCKET_NAME = 'aws-rs-school-import-service';
 const UPLOADED_FOLDER = 'uploaded';
@@ -69,8 +70,10 @@ export const parseCsvFromBucket = async (s3Params: S3Params): Promise<any> => {
   console.debug(s3Params);
   const s3 = new aws.S3();
   const parsedRows = [];
+  const sqs = new aws.SQS();
+
   const stream = s3.getObject(s3Params).createReadStream().pipe(csvParser()).on('data', (row) => {
-    parsedRows.push(row);
+    sendProductToQueue(sqs, row);
   });
 
   return new Promise((resolve, reject) => {

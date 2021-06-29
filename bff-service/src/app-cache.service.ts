@@ -24,13 +24,15 @@ export class AppCacheService {
     const cachedResult = await this.cacheManager.get(key) as AxiosResponse;
 
     if (cachedResult) {
-      console.log(`send data for ${key} from cache`);
+      console.log(`Cache HIT for key: ${key}`);
       return Promise.resolve(cachedResult);
     }
 
+    console.log(`Cache miss for key: ${key}`);
+
     const response = await this.appService.proxy(req);
 
-    console.log(`set data for ${key} to cache`);
+    console.log(`Saving data into cache with key: ${key}`);
     await this.cacheManager.set(key, response, {ttl: +process.env['CACHE_TTL']});
 
     return Promise.resolve(response);

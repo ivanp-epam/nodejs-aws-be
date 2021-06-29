@@ -13,12 +13,18 @@ export class AppService {
   async proxy(req: Request): Promise<AxiosResponse> {
     let axiosRequest = {
       method: <Method>req.method,
-      body: req.body,
-      baseURL: this.resolveBaseUrl(req)
+      baseURL: this.resolveBaseUrl(req),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+
+    if (axiosRequest.method.toLocaleLowerCase() !== 'get') {
+      axiosRequest['data'] = req.body;
     }
 
     if (req.headers['Authorization']) {
-      axiosRequest['headers'] = {'Authorization': req.headers['Authorization']}
+      axiosRequest['headers']['Authorization'] = req.headers['Authorization'];
     }
 
     console.log(`Performing request ${JSON.stringify(axiosRequest)}`);
@@ -28,7 +34,8 @@ export class AppService {
         return response;
       }),
       catchError((error: AxiosError) => {
-        console.log(`Request ${JSON.stringify(axiosRequest)} has been resulted with error status code: ${error.response.status}`);
+        const code = error.response?.status || error.code;
+        console.log(`Request ${JSON.stringify(axiosRequest)} has been resulted with error status code: ${code}`);
         return of(error.response);
       }),
     ).toPromise();
